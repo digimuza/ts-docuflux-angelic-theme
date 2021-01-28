@@ -1,10 +1,10 @@
 import React from "react";
-import DocList from "../components/Documentation";
+import App from "../components/Documentation";
 import { DocumentationMembers } from "../_core";
 import data from "./mock/data.json";
 export default {
-  title: "DocList",
-  component: DocList,
+  title: "App",
+  component: App,
 };
 
 const getMock = () => {
@@ -17,5 +17,5 @@ const getMock = () => {
 };
 const mock = getMock()
 export const Empty = () => (
-  <DocList documentation={mock.docs} readme={mock.articles.readme}></DocList>
+  <App documentation={mock.docs} readme={mock.articles.readme}></App>
 );

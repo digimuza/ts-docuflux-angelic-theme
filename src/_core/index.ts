@@ -61,9 +61,9 @@ export function getMembers(data: DocuFluxDocumentation) {
 export function parseComment(comment: string) {
     const cleanComment = comment.replace("/**", '').replace("*/", '').split(/^[ ]+?\*/gm)
     const row = cleanComment.join("\n").trim().replace(/(@\w+)/gm, "###$1").split("###").map((q) => q.trim())
-    const description = row.filter((q) => !/\@\w+/.test(q))[0]
-    const parsed = row.filter((q) => /\@\w+/.test(q)).map((w) => {
-        const cc = w.replace(/(\@\w+)/, '$1##').split("##")
+    const description = row.filter((q) => !/@\w+/.test(q))[0]
+    const parsed = row.filter((q) => /@\w+/.test(q)).map((w) => {
+        const cc = w.replace(/(@\w+)/, '$1##').split("##")
         const tag = cc[0]
         const content = P.pipe(cc.slice(1), P.flatMap((q) => q.split("\n").map((q) => q.trim()).filter((q) => q)))
         if (tag === '@param') {

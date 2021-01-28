@@ -1,10 +1,10 @@
 import * as P from 'ts-prime'
 
-require("./beautify.js")
-const hls = require('highlight.js')
-
 import marked from 'marked'
 import "highlight.js/styles/github.css"
+
+// require("./beautify.js")
+const hls = require('highlight.js')
 
 export function renderMarkdown(content: string) {
     return marked.setOptions({
@@ -22,7 +22,8 @@ export function renderMarkdown(content: string) {
 
 
 export function beautify(code: string): string {
-    return (window as any).js_beautify(code, {
+    console.log(window)
+    return (window as any)?.js_beautify(code, {
         "indent_size": "4",
         "indent_char": " ",
         "max_preserve_newlines": "5",

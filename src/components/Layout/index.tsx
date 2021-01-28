@@ -1,21 +1,18 @@
-import { Breadcrumb, Card, Input, Layout, Menu, Tooltip } from "antd";
+import { Card, Layout, Menu, Tooltip } from "antd";
 import React, { PropsWithChildren } from "react";
 import "antd/dist/antd.css";
 import "./Layout.css";
-const { Header, Content, Sider } = Layout;
-import Scrollbar from "smooth-scrollbar";
 
 import {
   BrowserRouter as Router,
-  Switch,
   Route,
   useRouteMatch,
   Link,
-  useLocation,
   Redirect,
 } from "react-router-dom";
 import * as P from "ts-prime";
-import { Markdown } from "../Documentation/Makrdown";
+import { Markdown } from "../Documentation/Markdown";
+const { Header, Content, Sider } = Layout;
 
 const paths = {
   home: { key: 1, path: "/home", title: "Home" },
@@ -30,9 +27,10 @@ const LayoutHeader = () => {
   ].filter(P.isDefined);
   return (
     <Header className="header">
-      <Link to={'/home'}>
+      <Link to={"/home"}>
         <div className={"logo"}>
           <img
+            alt={"logo"}
             style={{
               width: 100,
               height: "auto",
@@ -54,6 +52,7 @@ const LayoutHeader = () => {
         <Tooltip title={"Github"}>
           <a href={"https://github.com/digimuza/ts-prime"}>
             <img
+              alt={"Github"}
               style={{
                 width: "auto",
                 height: "30px",

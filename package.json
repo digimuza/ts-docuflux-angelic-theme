@@ -1,15 +1,13 @@
 {
   "name": "react-typescript-storybook-starter",
   "version": "0.0.1",
-  "main": "build/lib/index.js",
-  "types": "build/lib/index.d.ts",
-  "files": [
-    "build/lib"
-  ],
   "scripts": {
-    "start": "npm run storybook",
     "storybook": "start-storybook -s ./public -p 6006",
-    "build-storybook": "build-storybook"
+    "build-storybook": "build-storybook",
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "repository": "https://github.com/sw-yx/react-typescript-storybook-starter.git",
   "author": "sw-yx <shawnthe1@gmail.com>",
@@ -22,24 +20,33 @@
     "@storybook/addons": "5.3.17",
     "@storybook/react": "5.3.17",
     "@storybook/theming": "5.3.17",
-    "@types/jest": "25.1.4",
-    "@types/node": "13.9.0",
-    "@types/react": "16.9.25",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.53",
+    "@types/react-dom": "^16.9.8",
     "@types/storybook__addon-knobs": "5.2.1",
     "@types/storybook__react": "5.2.1",
     "babel-loader": "8.1.0",
     "fork-ts-checker-webpack-plugin": "4.1.1",
-    "jest": "25.2.0",
+    "react": "^17.0.1",
     "react-docgen-typescript-loader": "3.7.1",
+    "react-dom": "^17.0.1",
+    "react-scripts": "^4.0.1",
     "ts-jest": "25.2.1",
-    "ts-loader": "6.2.2",
-    "typescript": "3.8.3"
+    "ts-loader": "^6.2.2",
+    "typescript": "^4.0.3",
+    "web-vitals": "^0.2.4"
   },
   "dependencies": {
     "@ant-design/icons": "4.3.0",
     "@types/marked": "1.2.1",
+    "@types/react-dom": "17.0.0",
     "@types/react-router-dom": "5.1.6",
     "antd": "4.9.1",
+    "axios": "0.21.1",
     "github-markdown-css": "4.0.0",
     "highlight.js": "10.4.1",
     "marked": "1.2.5",
@@ -51,5 +58,23 @@
     "react-syntax-highlighter": "15.3.1",
     "smooth-scrollbar": "8.5.3",
     "ts-prime": "0.3.7"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
   }
 }

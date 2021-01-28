@@ -1,6 +1,6 @@
-import { Card, Collapse, Tag, Typography } from "antd";
+import { Card, Tag, Typography } from "antd";
 import React, { PropsWithChildren } from "react";
-import { DocumentationMembers, excerptTokensToString } from "../../_core";
+import { DocumentationMembers } from "../../_core";
 import * as P from "ts-prime";
 import BaseSyntaxHighlighter from "react-syntax-highlighter";
 import theme from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark";
@@ -8,13 +8,12 @@ import { tagColor } from "./SideBar";
 import { beautify } from "../../_core/utils";
 import "github-markdown-css/github-markdown.css";
 import "./Card.css";
-import { Markdown } from "./Makrdown";
-const { Panel } = Collapse;
+import { Markdown } from "./Markdown";
 
 theme.hljs.padding = "0.5em";
 theme.hljs.margin = "0";
 
-const SyntaxHighlighter = (props: PropsWithChildren<{}>) => {
+export const SyntaxHighlighter = (props: PropsWithChildren<{}>) => {
   return (
     <div style={{ borderRadius: 5, overflow: "hidden" }}>
       <BaseSyntaxHighlighter language={"javascript"} style={{ ...theme }}>
@@ -48,18 +47,6 @@ export const DocumentationCard = (props: {
         .filter((q) => q.tag === "@warning")
         .map((q) => {
           if (Array.isArray(q.content)) {
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "flex-start",
-                alignItems: "center",
-              }}
-            >
-              <div></div>
-              <div>
-                <Markdown markdown={q.content.join("\n")}></Markdown>
-              </div>
-            </div>;
             return (
               <div className={"warning"}>
                 <div className={"dot"}>WARNING</div>
@@ -69,6 +56,8 @@ export const DocumentationCard = (props: {
               </div>
             );
           }
+
+          return null
         })}
       <div style={{ height: 10 }}></div>
       {props.docMember.members[0].comment.parsed
@@ -77,6 +66,8 @@ export const DocumentationCard = (props: {
           if (Array.isArray(q.content)) {
             return <Markdown markdown={q.content.join("\n")}></Markdown>;
           }
+
+          return null
         })}
       <div style={{ height: 10 }}></div>
       <div>

@@ -4,7 +4,7 @@ import {
   groupMembers,
 } from "../../_core";
 import { PrimaryLayout } from "../Layout";
-import { Input, Row, Tag } from "antd";
+import { Input } from "antd";
 import { SideBar } from "./SideBar";
 import { DocumentationCard } from "./Card";
 import { observer } from "mobx-react";

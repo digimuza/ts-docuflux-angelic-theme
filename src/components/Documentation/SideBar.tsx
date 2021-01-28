@@ -1,5 +1,4 @@
-import { Empty, Input, Menu, Tag } from "antd";
-import SubMenu from "antd/lib/menu/SubMenu";
+import { Empty, Menu, Tag } from "antd";
 import React, { Fragment } from "react";
 import { GroupedDocumentationMembers } from "../../_core";
 import * as P from "ts-prime";
