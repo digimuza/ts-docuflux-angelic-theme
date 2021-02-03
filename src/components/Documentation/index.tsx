@@ -37,11 +37,11 @@ export default observer(
         }
       >
         {groupedMembers.map((q) => (
-          <div>
-            <div>
+          <div key={q.group}>
+            <div key={q.group}>
               {q.members.map((q) => (
-                <Fragment>
-                  <DocumentationCard docMember={q}></DocumentationCard>
+                <Fragment key={q.canonicalReference}>
+                  <DocumentationCard key={q.canonicalReference} docMember={q}></DocumentationCard>
                   <div style={{ height: 10 }}></div>
                 </Fragment>
               ))}

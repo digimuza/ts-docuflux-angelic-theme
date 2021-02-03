@@ -5,6 +5,7 @@ import App from "./components/Documentation";
 import reportWebVitals from "./reportWebVitals";
 import { DocumentationMembers } from "./_core";
 import axios from "axios";
+import "react-virtualized/styles.css";
 
 type Data = {
   docs: DocumentationMembers;
@@ -31,15 +32,16 @@ const Load = () => {
     });
   }, []);
   if (state == null) return null;
-  return <App documentation={state.docs} readme={state.articles.readme}></App>;
+  return (
+    <App
+      key={"app"}
+      documentation={state.docs}
+      readme={state.articles.readme}
+    ></App>
+  );
 };
 
-ReactDOM.render(
-  <React.StrictMode>
-    <Load />
-  </React.StrictMode>,
-  document.getElementById("root")
-);
+ReactDOM.render(<Load />, document.getElementById("root"));
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))

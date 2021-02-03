@@ -4,6 +4,7 @@ import { GroupedDocumentationMembers } from "../../_core";
 import * as P from "ts-prime";
 import { observer } from "mobx-react";
 import { SearchState } from ".";
+
 export function tagColor(tag: string) {
   switch (tag.toLowerCase()) {
     case "p":
@@ -39,8 +40,9 @@ export const SideBar = observer(
         .map((q) => {
           return (
             <Menu.Item key={q.canonicalReferenceGroup}>
-              <a href={`#link-${q.name}`}>
+              <a href={`#link-${q.name}`} key={q.canonicalReference}>
                 <div
+                  key={q.canonicalReference}
                   style={{
                     display: "flex",
                     justifyContent: "space-between",
@@ -54,7 +56,7 @@ export const SideBar = observer(
                     {q.tags
                       .map((q) => (q.value === "Pipe" ? "P" : q.value))
                       .map((cat) => {
-                        return <Tag color={tagColor(cat)}>{cat}</Tag>;
+                        return <Tag key={cat} color={tagColor(cat)}>{cat}</Tag>;
                       })}
                   </div>
                 </div>
@@ -63,13 +65,14 @@ export const SideBar = observer(
           );
         });
     });
+
     return (
       <div
+        className={"side-bar-content"}
         style={{
           height: "calc(100vh - 64px - 72px)",
           overflow: "hidden",
           overflowY: "auto",
-          background: "white",
         }}
       >
         <Menu

@@ -1,17 +1,18 @@
 import * as P from 'ts-prime'
 
 import marked from 'marked'
-import "highlight.js/styles/github.css"
-
+import "./themes/dark.scss"
+import "./themes/light.scss"
+import "./themes/markdown.light.scss"
+import "./themes/markdown.dark.scss"
 // require("./beautify.js")
 const hls = require('highlight.js')
 
 export function renderMarkdown(content: string) {
     return marked.setOptions({
-        highlight: function (code, lang) {
-            const res = P.canFail(() => hls.highlight(lang, code).value)
+        highlight: function (code) {
+            const res = P.canFail(() => hls.highlight('typescript', code).value)
             if (P.isError(res)) {
-                console.log(res)
                 return code
             }
 
@@ -22,24 +23,24 @@ export function renderMarkdown(content: string) {
 
 
 export function beautify(code: string): string {
-    console.log(window)
+    // return code
     return (window as any)?.js_beautify(code, {
         "indent_size": "4",
         "indent_char": " ",
         "max_preserve_newlines": "5",
         "preserve_newlines": true,
-        "keep_array_indentation": false,
+        "keep_array_indentation": true,
         "break_chained_methods": false,
-        "indent_scripts": "normal",
-        "brace_style": "collapse",
+        "indent_scripts": "keep",
+        "brace_style": "collapse,preserve-inline",
         "space_before_conditional": true,
-        "unescape_strings": false,
-        "jslint_happy": false,
-        "end_with_newline": false,
-        "wrap_line_length": "200",
-        "indent_inner_html": false,
+        "unescape_strings": true,
+        "jslint_happy": true,
+        "end_with_newline": true,
+        "wrap_line_length": "0",
+        "indent_inner_html": true,
         "comma_first": false,
-        "e4x": false,
-        "indent_empty_lines": false
-    })
+        "e4x": true,
+        "indent_empty_lines": true
+      })
 }

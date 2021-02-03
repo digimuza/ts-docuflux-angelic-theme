@@ -6,7 +6,6 @@ import BaseSyntaxHighlighter from "react-syntax-highlighter";
 import theme from "react-syntax-highlighter/dist/esm/styles/hljs/atom-one-dark";
 import { tagColor } from "./SideBar";
 import { beautify } from "../../_core/utils";
-import "github-markdown-css/github-markdown.css";
 import "./Card.css";
 import { Markdown } from "./Markdown";
 
@@ -29,6 +28,7 @@ export const DocumentationCard = (props: {
   return (
     <Card
       id={`link-${props.docMember.name}`}
+      key={`link-${props.docMember.name}`}
       title={
         <Typography.Title level={4}>{props.docMember.name}</Typography.Title>
       }
@@ -36,7 +36,7 @@ export const DocumentationCard = (props: {
       extra={props.docMember.tags
         .map((q) => (q.value === "Pipe" ? "P" : q.value))
         .map((q) => (
-          <Tag color={tagColor(q)}>{q}</Tag>
+          <Tag key={q} color={tagColor(q)}>{q}</Tag>
         ))}
     >
       <Markdown
@@ -48,7 +48,7 @@ export const DocumentationCard = (props: {
         .map((q) => {
           if (Array.isArray(q.content)) {
             return (
-              <div className={"warning"}>
+              <div key={q.tag} className={"warning"}>
                 <div className={"dot"}>WARNING</div>
                 <div className={"warning-text"}>
                   <Markdown markdown={q.content.join("\n")}></Markdown>
@@ -64,7 +64,7 @@ export const DocumentationCard = (props: {
         .filter((q) => q.tag === "@description")
         .map((q) => {
           if (Array.isArray(q.content)) {
-            return <Markdown markdown={q.content.join("\n")}></Markdown>;
+            return <Markdown key={q.tag} markdown={q.content.join("\n")}></Markdown>;
           }
 
           return null
@@ -77,7 +77,7 @@ export const DocumentationCard = (props: {
             if (example == null) return null;
             const bExample = beautify(q.comment.example);
             return (
-              <div>
+              <div key={q.canonicalReference}>
                 <Markdown
                   markdown={`
 \`\`\`typescript
